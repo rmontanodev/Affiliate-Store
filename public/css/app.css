@@ -78,3 +78,7 @@ a {
   position: relative;
 }
 
+[name=navbar] {
+  height: 64px;
+}
+

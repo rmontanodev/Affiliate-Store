@@ -1862,6 +1862,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'navbar'
 });
@@ -2383,46 +2391,82 @@ var render = function() {
     [
       _c("v-toolbar-title", { staticClass: "white--text" }),
       _vm._v(" "),
-      _c("v-avatar", [
-        _c("img", {
-          attrs: {
-            src:
-              "https://areajugones.sport.es/wp-content/uploads/2018/09/1513003918621pingu-810x400.jpg"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c(
-        "v-btn",
-        { attrs: { icon: "" } },
-        [_c("v-icon", [_vm._v("fas fa-star ")])],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-btn",
-        { attrs: { icon: "" } },
-        [_c("v-icon", [_vm._v("fas fa-cogs")])],
-        1
-      ),
-      _vm._v(" "),
-      _c("v-spacer"),
-      _vm._v(" "),
-      _c("v-btn", { attrs: { icon: "" } }, [_c("v-icon", [_vm._v("home")])], 1),
-      _vm._v(" "),
-      _c(
-        "v-btn",
-        { attrs: { icon: "" } },
-        [_c("v-icon", [_vm._v("fas fa-user-plus")])],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-btn",
-        { attrs: { icon: "" } },
-        [_c("v-icon", [_vm._v("fas fa-sign-in-alt")])],
-        1
-      )
+      _c("div", { staticClass: "row", staticStyle: { height: "64px" } }, [
+        _c(
+          "div",
+          { staticClass: "col-md-4", attrs: { id: "user" } },
+          [
+            _c("v-avatar", { attrs: { id: "user-img" } }, [
+              _c("img", {
+                attrs: {
+                  src:
+                    "https://areajugones.sport.es/wp-content/uploads/2018/09/1513003918621pingu-810x400.jpg"
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              { attrs: { icon: "", id: "user-notifications" } },
+              [_c("v-icon", [_vm._v("fas fa-star ")])],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              { attrs: { icon: "", id: "user-config" } },
+              [_c("v-icon", [_vm._v("fas fa-cogs")])],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2 offset-1" }, [
+          _c(
+            "h2",
+            {
+              staticClass: "d-flex justify-content-center",
+              staticStyle: {
+                color: "white",
+                border: "3px solid",
+                "border-radius": "15px",
+                "background-color": "blue"
+              },
+              attrs: { name: "website" }
+            },
+            [_vm._v(" PriceCompare ")]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-2 offset-3 d-flex justify-content-center" },
+          [
+            _c(
+              "v-btn",
+              { attrs: { icon: "" } },
+              [_c("v-icon", [_vm._v("home")])],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              { attrs: { icon: "" } },
+              [_c("v-icon", [_vm._v("fas fa-user-plus")])],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              { attrs: { icon: "" } },
+              [_c("v-icon", [_vm._v("fas fa-sign-in-alt")])],
+              1
+            )
+          ],
+          1
+        )
+      ])
     ],
     1
   )

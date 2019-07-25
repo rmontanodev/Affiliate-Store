@@ -31,12 +31,15 @@
 </div>
 <div class="all">
     <div id="container" class="col-md-10 offset-md-1">
-        <div id="products">
-            <h1 class="display-4">Productos</h1>
-            <div class="row">
-                @include('.products.products')
+        <div class="row">
+            <div id="products" class="col-md-3">
+                @yield('filter')
+            </div>
+            <div id="products" class="col-md-9">
+                @yield('products')
             </div>
         </div>
+
     </div>
 </div>
     <script src="{{ asset('js/app.js')  }}"></script>

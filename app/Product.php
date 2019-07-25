@@ -16,6 +16,6 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
     public function productprice(){
-        return $this->belongsTo(ProductPrice::class);
+        return $this->hasMany(ProductPrice::class);
     }
 }

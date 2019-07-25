@@ -10,5 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/','HomeController@index');
+Route::get('/products','ProductsController@index');
+Route::get('/products/brand/{name}',array('uses'=>'ProductsController@filterbrand','as'=>'productbrand'));

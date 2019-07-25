@@ -1,4 +1,8 @@
-@forelse($offers as $offer)
+@extends('layouts.app')
+@section('products')
+    <h1 class="display-4">Productos</h1>
+    <div class="row">
+    @forelse($offers as $offer)
     <div class="col-md-2 card" sn="product{{$offer->product->SerialNumber}}">
             <div class="imagen-{{$offer->product->SerialNumber}}">
         <img class="card-img-top" src="{{$offer->product->Img}}">
@@ -23,3 +27,25 @@
     @empty
     <p>No hay productos</p>
 @endforelse
+    </div>
+
+@endsection
+@section('filter')
+    <h1 class="display-4">Filter</h1>
+    <div class="card">
+        <div class="col-md-12 filter-brand-title">
+            <p>Marcas</p>
+        </div>
+        <div class="col-md-12 filter-brand-tags">
+            <ul>
+        @forelse($brands as $brand)
+            <li>
+                <a title="{{$brand->Name}}" href="{{route('productbrand',[$brand->Name])}}">{{$brand->Name}}</a>
+            </li>
+            @empty
+        @endforelse
+            </ul>
+        </div>
+    </div>
+
+@endsection
