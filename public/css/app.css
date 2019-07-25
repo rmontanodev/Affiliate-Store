@@ -27,7 +27,7 @@
 }
 
 body {
-  font-family: Impact;
+  font-family: "Lato";
 }
 
 a {
@@ -41,11 +41,13 @@ a {
 .card-title {
   color: #2e2d2d;
   font-size: 22px;
+  font-weight: bold;
 }
 
-[ln=precios] {
-  font-size: 30px;
+[ln=precios-lower] {
+  font-size: 28px;
   color: green;
+  font-weight: bold;
 }
 
 .all {
@@ -54,5 +56,25 @@ a {
 
 .masbajo {
   color: green;
+}
+
+.masalto {
+  color: red;
+}
+
+[ln=precios-higher] {
+  font-size: 28px;
+  color: red;
+  text-decoration: line-through;
+  font-weight: bold;
+}
+
+.card-title {
+  margin: 7px;
+}
+
+[class*=card-url] {
+  visibility: hidden;
+  position: relative;
 }
 
