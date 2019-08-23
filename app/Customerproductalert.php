@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Customerproductalert extends Model
 {
     protected $table = 'customersproductalert';
-    protected $fillable = ['Customer_id','Product_id','Price'];
+    protected $fillable = ['customer_id','product_id','price'];
 
     public function customer(){
         return $this->belongsTo(Customer::class);

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $table = 'products';
-    protected $fillable = ['SerialNumber','Category_id','Brand_id','Model','Img'];
+    protected $fillable = ['serialNumber','category_id','brand_id','model','img'];
 
     public function category(){
         return $this->belongsTo(Category::class);
@@ -15,7 +15,7 @@ class Product extends Model
     public function brand(){
         return $this->belongsTo(Brand::class);
     }
-    public function productprice(){
-        return $this->hasMany(ProductPrice::class);
+    public function offers(){
+        return $this->hasMany(Offer::class);
     }
 }

@@ -12,8 +12,6 @@ class UserTypeSeedTable extends Seeder
     public function run()
     {
         DB::table('UserType')->insert(['Type'=>'Admin']);
-        DB::table('UserType')->insert(['Type'=>'Encargado']);
-        DB::table('UserType')->insert(['Type'=>'Becario']);
-        DB::table('UserType')->insert(['Type'=>'Usuario']);
+        DB::table('UserType')->insert(['Type'=>'User']);
     }
 }

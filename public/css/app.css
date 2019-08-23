@@ -28,6 +28,7 @@
 
 body {
   font-family: "Lato";
+  background-color: #e6e6e6;
 }
 
 a {
@@ -81,4 +82,6 @@ a {
 [name=navbar] {
   height: 64px;
 }
-
+.fa-star{
+  color:yellow;
+}

@@ -9,6 +9,6 @@ class Brand extends Model
     //
     protected $table = 'brand';
 
-    protected $fillable = ['Name','img'];
+    protected $fillable = ['name','img'];
 
 }

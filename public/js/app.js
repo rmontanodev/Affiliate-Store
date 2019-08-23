@@ -1870,8 +1870,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'navbar'
+  name: 'navbar',
+  props: ['img', 'alerturl', 'config', 'user_type']
 });
 
 /***/ }),
@@ -2382,91 +2392,106 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-toolbar",
-    {
-      staticClass: "navdark",
-      staticStyle: { "background-color": "#202124" },
-      attrs: { dark: "" }
-    },
+    "div",
     [
-      _c("v-toolbar-title", { staticClass: "white--text" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "row", staticStyle: { height: "64px" } }, [
-        _c(
-          "div",
-          { staticClass: "col-md-4", attrs: { id: "user" } },
-          [
-            _c("v-avatar", { attrs: { id: "user-img" } }, [
-              _c("img", {
-                attrs: {
-                  src:
-                    "https://areajugones.sport.es/wp-content/uploads/2018/09/1513003918621pingu-810x400.jpg"
-                }
-              })
-            ]),
-            _vm._v(" "),
+      _c(
+        "v-toolbar",
+        {
+          staticClass: "navdark",
+          staticStyle: { "background-color": "#202124" },
+          attrs: { dark: "" }
+        },
+        [
+          _c("v-toolbar-title", { staticClass: "white--text" }, [
             _c(
-              "v-btn",
-              { attrs: { icon: "", id: "user-notifications" } },
-              [_c("v-icon", [_vm._v("fas fa-star ")])],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-btn",
-              { attrs: { icon: "", id: "user-config" } },
-              [_c("v-icon", [_vm._v("fas fa-cogs")])],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-2 offset-1" }, [
-          _c(
-            "h2",
-            {
-              staticClass: "d-flex justify-content-center",
-              staticStyle: {
-                color: "white",
-                border: "3px solid",
-                "border-radius": "15px",
-                "background-color": "blue"
+              "h2",
+              {
+                staticClass: "d-flex justify-content-center",
+                staticStyle: {
+                  color: "white",
+                  border: "3px solid",
+                  "border-radius": "15px",
+                  "background-color": "blue"
+                },
+                attrs: { name: "website" }
               },
-              attrs: { name: "website" }
-            },
-            [_vm._v(" PriceCompare ")]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-md-2 offset-3 d-flex justify-content-center" },
-          [
-            _c(
-              "v-btn",
-              { attrs: { icon: "" } },
-              [_c("v-icon", [_vm._v("home")])],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-btn",
-              { attrs: { icon: "" } },
-              [_c("v-icon", [_vm._v("fas fa-user-plus")])],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-btn",
-              { attrs: { icon: "" } },
-              [_c("v-icon", [_vm._v("fas fa-sign-in-alt")])],
-              1
+              [_vm._v(" PriceCompare ")]
             )
-          ],
-          1
-        )
-      ])
+          ]),
+          _vm._v(" "),
+          _vm.user_type == 3
+            ? _c("div", { staticClass: "navbar-guest col-md-7" }, [
+                _c(
+                  "div",
+                  { staticClass: "row", staticStyle: { height: "64px" } },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "col-md-2 offset-6" },
+                      [
+                        _c(
+                          "v-btn",
+                          { attrs: { icon: "" } },
+                          [_c("v-icon", [_vm._v("home")])],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          { attrs: { icon: "" } },
+                          [_c("v-icon", [_vm._v("fas fa-user-plus")])],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          { attrs: { icon: "" } },
+                          [_c("v-icon", [_vm._v("fas fa-sign-in-alt")])],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                )
+              ])
+            : _vm.user_type == 2
+            ? _c("div", { staticClass: "navbar-user col-md-7" }, [
+                _c(
+                  "div",
+                  { staticClass: "row", staticStyle: { height: "64px" } },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "col-md-4", attrs: { id: "user" } },
+                      [
+                        _c("v-avatar", { attrs: { id: "user-img" } }, [
+                          _c("img", { attrs: { src: _vm.img } })
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          { attrs: { icon: "", id: "user-notifications" } },
+                          [_c("v-icon", [_vm._v("fas fa-star ")])],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          { attrs: { icon: "", id: "user-config" } },
+                          [_c("v-icon", [_vm._v("fas fa-cogs")])],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                )
+              ])
+            : _vm._e()
+        ],
+        1
+      )
     ],
     1
   )
@@ -40564,25 +40589,20 @@ module.exports = g;
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Navbar */ "./resources/js/components/Navbar.vue");
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 window.Vuetify = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
 Vue.use(Vuetify);
-Vue.component('navbar', __webpack_require__(/*! ./components/Navbar.vue */ "./resources/js/components/Navbar.vue"));
+Vue.component('navbar', __webpack_require__(/*! ./components/Navbar.vue */ "./resources/js/components/Navbar.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -40590,10 +40610,7 @@ Vue.component('navbar', __webpack_require__(/*! ./components/Navbar.vue */ "./re
  */
 
 var app = new Vue({
-  el: '#app',
-  render: function render(h) {
-    return h(_components_Navbar__WEBPACK_IMPORTED_MODULE_0__["default"]);
-  }
+  el: '#app'
 });
 
 /***/ }),

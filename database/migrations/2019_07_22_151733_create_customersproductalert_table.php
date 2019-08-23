@@ -15,9 +15,9 @@ class CreateCustomersproductalertTable extends Migration
     {
         Schema::create('customersproductalert', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Customer_id');
-            $table->string('Product_id');
-            $table->float('Price');
+            $table->string('customer_id');
+            $table->string('product_id');
+            $table->float('price');
             $table->timestamps();
         });
     }

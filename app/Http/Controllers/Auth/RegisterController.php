@@ -64,9 +64,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'Fullname' => $data['name'],
+            'Email' => $data['email'],
+            'Password' => Hash::make($data['password']),
+            'imgAvatar' => 'https://images.stv.tv/player/w1180xh660/580105-pingu.jpg',
+            'On_off' => 0
         ]);
     }
 }

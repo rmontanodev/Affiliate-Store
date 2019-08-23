@@ -11,5 +11,9 @@
 |
 */
 Route::get('/','HomeController@index');
-Route::get('/products','ProductsController@index');
-Route::get('/products/brand/{name}',array('uses'=>'ProductsController@filterbrand','as'=>'productbrand'));
+Route::get('/products', array('uses'=>'Offers@index','as'=>'productos'));
+Route::get('/products/brand/{name}',array('uses'=>'Offers@filterbrand','as'=>'productbrand'));
+Route::get('/logout','Auth\LoginController@logout');
+Route::get('products/category/{name}',array('uses'=>'Offers@filtercategory','as'=>'productcategory'));
+Auth::routes();
+
