@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('products')
-    <h1 class="display-4">Productos</h1>
-    <div class="row">
-    @forelse($offers as $offer)
-    <div class="col-md-2 card" sn="product{{$offer->product->serialNumber}}">
+    <div class="row" id="items">
+        @forelse($offers as $offer)
+    <div class="col-md-3 card" sn="product{{$offer->product->serialNumber}}">
             <div class="imagen-{{$offer->product->serialNumber}}">
         <img class="card-img-top" src="{{$offer->product->img}}">
             </div>
@@ -37,6 +36,19 @@
     @empty
     <p>No hay productos</p>
 @endforelse
+    </div>
+    <div class="row">
+        @if($paginastotales>9)
+            @for($i = 1; $i < 10;$i++)
+                <div class="col-md">
+                <button type="button" class="btn btn-info loadmore">{{$i}}</button>
+                </div>
+            @endfor
+                <div class="col-md">
+                <button type="button" class="btn btn-info loadmore">{{$paginastotales}}</button>
+                </div>
+        @else
+        @endif
     </div>
 
 @endsection
@@ -76,8 +88,11 @@
     <div class="list-group">
         <div class="col-md-12">
             <p>
-                <label for="amount">Precio</label>
-                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                <h5 for="amount">Precio</h5>
+            <label>Min:</label>
+                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"><br>
+            <label>Max:</label>
+            <input type="text" id="amount2" readonly style="border:0; color:#f6931f; font-weight:bold;">
             </p>
 
             <div id="slider-range"></div>
@@ -91,12 +106,22 @@
                 max: {!! json_encode($rangeprice['higher']) !!},
                 values: [ {!! json_encode($rangeprice['lower']) !!}, {!! json_encode($rangeprice['higher']) !!} ],
                 slide: function( event, ui ) {
-                    $( "#amount" ).val( "€" + ui.values[ 0 ] + " - €" + ui.values[ 1 ] );
+                    $( "#amount" ).val( ui.values[ 0 ]);
+                    $('#amount2').val(ui.values[ 1 ] );
                 }
             });
-            $( "#amount" ).val( "€" + $( "#slider-range" ).slider( "values", 0 ) +
-                " - €" + $( "#slider-range" ).slider( "values", 1 ) );
+            $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ))
+            $('#amount2').val( $( "#slider-range" ).slider( "values", 1 ) );
         } );
+        let productos = {!! json_encode($offers) !!}
+        $('#slider-range').on('click',(()=>{
+            console.log('filtrando por precios')
+            $.get({
+                url: "/products/filterprice/"+$('#amount').val()+"/"+$('#amount2').val(),
+            },(data)=>{
+                $('#items').html(data);
+            })
+        }))
     </script>
 
 @endsection

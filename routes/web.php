@@ -15,5 +15,7 @@ Route::get('/products', array('uses'=>'Offers@index','as'=>'productos'));
 Route::get('/products/brand/{name}',array('uses'=>'Offers@filterbrand','as'=>'productbrand'));
 Route::get('/logout','Auth\LoginController@logout');
 Route::get('products/category/{name}',array('uses'=>'Offers@filtercategory','as'=>'productcategory'));
+Route::get('/products/filterprice/{min}/{max}',array('uses'=>'Offers@fiterbyprice','as'=>'productfilterprice'));
+Route::get('/products/pagination/{page}','Offers@pagination');
 Auth::routes();
 

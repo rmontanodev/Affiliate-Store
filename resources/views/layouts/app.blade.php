@@ -47,10 +47,11 @@
             @include('navbar.navbar')
         </div>
         <div class="row">
-            <div id="products" class="col-md-3">
+            <div id="filter" class="col-md-3">
                 @yield('filter')
             </div>
             <div id="products" class="col-md-9">
+                <h1 class="display-4">Productos</h1>
                 @yield('products')
             </div>
         </div>
@@ -74,7 +75,13 @@
             $(el.currentTarget).find('[class*="card-url"]').css('visibility','hidden')
         }
     })
-
+    $('button[class*="loadmore"]').on('click',(el)=>{
+        $.get({
+            url: "/products/pagination/"+$(el.currentTarget)[0].innerText
+        },(data)=>{
+            $('#items').html(data);
+        })
+    })
 </script>
 </body>
 </html>

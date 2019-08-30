@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 class Offers extends Controller
 {
     public function index(){
-        $offers = Offer::get();
+        $offers = Offer::limit(12)->get();
+        $cantidad = Offer::count();
+        $paginastotales =  ceil($cantidad / 12);
         $brands = Brand::get();
         $categories = Category::get();
         $pricemin = Offer::orderBy('totalPrice','asc')->first();
@@ -21,7 +23,7 @@ class Offers extends Controller
             'lower' => $pricemin->totalPrice,
             'higher' => $pricemax->totalPrice
         );
-        return view('products.index',compact('offers','brands','categories','rangeprice'));
+        return view('products.index',compact('offers','brands','categories','rangeprice','paginastotales'));
     }
     public function filterbrand($name){
         $brand = Brand::where('name',$name)->first();
@@ -63,5 +65,14 @@ class Offers extends Controller
             'higher' => $pricemax->totalPrice
         );
         return view('products.index',compact('offers','brands','categories','rangeprice'));
+    }
+    public function fiterbyprice($min,$max){
+        $offers = Offer::whereBetween('totalPrice',[$min,$max])->get();
+        return view('partial.products',compact('offers'));
+    }
+    public function pagination($page){
+        $offsetting = ($page - 1) * 12;
+        $offers = Offer::offset($offsetting)->limit(12)->get();
+        return view('partial.products',compact('offers'));
     }
 }
