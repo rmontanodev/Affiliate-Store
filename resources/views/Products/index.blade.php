@@ -36,20 +36,21 @@
     @empty
     <p>No hay productos</p>
 @endforelse
+            <div class="row">
+                @if($paginastotales>9)
+                    @for($i = 1; $i < 10;$i++)
+                        <div class="col-md">
+                            <button type="button" class="btn btn-info loadmore">{{$i}}</button>
+                        </div>
+                    @endfor
+                    <div class="col-md">
+                        <button type="button" class="btn btn-info loadmore">{{$paginastotales}}</button>
+                    </div>
+                @else
+                @endif
+            </div>
     </div>
-    <div class="row">
-        @if($paginastotales>9)
-            @for($i = 1; $i < 10;$i++)
-                <div class="col-md">
-                <button type="button" class="btn btn-info loadmore">{{$i}}</button>
-                </div>
-            @endfor
-                <div class="col-md">
-                <button type="button" class="btn btn-info loadmore">{{$paginastotales}}</button>
-                </div>
-        @else
-        @endif
-    </div>
+
 
 @endsection
 @section('filter')
@@ -63,7 +64,7 @@
             <ul class="list-group">
                 @forelse($categories as $category)
                     <li class="list-group-item">
-                        <a title="{{$category->name}}" href="{{route('productcategory',[$category->name])}}">{{$category->name}}</a>
+                        <a title="{{$category->name}}" href="{{route('category',[$category->id])}}">{{$category->name}}</a>
                     </li>
                 @empty
                 @endforelse
@@ -78,7 +79,7 @@
             <ul class="list-group">
         @forelse($brands as $brand)
             <li class="list-group-item">
-                <a title="{{$brand->name}}" href="{{route('productbrand',[$brand->name])}}">{{$brand->name}}</a>
+                <a title="{{$brand->name}}" href="{{route('brand',[$brand->id])}}">{{$brand->name}}</a>
             </li>
             @empty
         @endforelse

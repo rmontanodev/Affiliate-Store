@@ -29,7 +29,24 @@
                 <p class="card-text" ln="precios-higher">{{$offer->totalPrice}}€</p>
             </div>
         </div>
+        <div class="row">
+            @if($paginastotales>9)
+                @for($i = 1; $i < 10;$i++)
+                    <div class="col-md">
+                        <button type="button" class="btn btn-info loadmore">{{$i}}</button>
+                    </div>
+                @endfor
+                <div class="col-md">
+                    <button type="button" class="btn btn-info loadmore">{{$paginastotales}}</button>
+                </div>
+            @else
+                <div class="col-md">
+                    <button type="button" class="btn btn-info loadmore">{{$i}}</button>
+                </div>
+            @endif
+        </div>
     </div>
+
 @empty
     <p>No hay productos</p>
     @endforelse
