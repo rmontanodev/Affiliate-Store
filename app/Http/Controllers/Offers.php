@@ -87,7 +87,7 @@ class Offers extends Controller
 
         }
         $paginastotales = ceil(count($offers) / 12);
-        return view('products.brand',compact('offers','categories','rangeprice','paginastotales'));
+        return view('products.brand',compact('offers','categories','rangeprice','paginastotales','brand_id'));
 
     }
     public function filtercategory($category_id){
@@ -136,12 +136,32 @@ class Offers extends Controller
 
         }
         $paginastotales = ceil(count($offers) / 12);
-        return view('products.category',compact('offers','brands','rangeprice','paginastotales'));
+        return view('products.category',compact('offers','brands','rangeprice','paginastotales','category_id'));
     }
     public function mixedfilter($category_id,$brand_id){
-        $offers = Offer::where(function($query) use ($category_id,$brand_id){
-            $query->product()->where('category_id','=',$category_id)->where('brand_id','=',$brand_id);
+        $products = Product::where(function($query) use ($category_id,$brand_id){
+            $query->where('category_id','=',$category_id)->where('brand_id','=',$brand_id);
         })->get();
+        $totaloffers = array();
+        //this for we get all offers of all products we have
+        for($i = 0; $i < count($products);$i++){
+            //in array totaloffers we will get array with 2 levels example ->($totaloffers[0] will have other array inside(array of offers of a product))
+            array_push($totaloffers,$products[$i]->offers()->get());
+        }
+
+
+        $offers = array();
+        //we want to get the lowest price of a offer of a product, so we will check all prices and just put on array $offers the offer with lowest price
+        for($i = 0; $i<count($totaloffers);$i++){
+            $item = array('price'=>9999999.9,'item'=>'hi');
+            for($j = 0; $j<count($totaloffers[$i]);$j++){
+                if($totaloffers[$i][$j]->totalPrice < $item['price']){
+                    $item['price'] = $totaloffers[$i][$j]->totalPrice;
+                    $item['item'] = $totaloffers[$i][$j];
+                }
+            }
+            array_push($offers,$item['item']);
+        }
         $rangeprice = array('minimo'=> 9999999,'maximo' => 0);
         for($i = 0; $i < count($offers);$i++) {
             if($offers[$i]->totalPrice < $rangeprice['minimo']){
@@ -151,7 +171,8 @@ class Offers extends Controller
                 $rangeprice['maximo'] = $offers[$i]->totalPrice;
             }
         }
-        return view('partial.products',compact('offers,rangeprice'));
+        $paginastotales =  ceil(count($offers) / 12);
+        return view('partial.products',compact('offers','paginastotales'));
     }
     public function fiterbyprice($min,$max,$category,$brand){
         if($category){

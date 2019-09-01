@@ -62,12 +62,15 @@
         </div>
         <div class="col-md-12 filter-brand-tags">
             <ul class="list-group">
+                <li class="list-group-item">
                 @forelse($categories as $category)
-                    <li class="list-group-item">
-                        <a title="{{$category->name}}" href="{{route('category',[$category->id])}}">{{$category->name}}</a>
-                    </li>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" category="{{$category->id}}" id="defaultUnchecked{{$loop->index}}">
+                        <label class="custom-control-label"  for="defaultUnchecked{{$loop->index}}">{{$category->name}}</label>
+                    </div>
                 @empty
                 @endforelse
+                </li>
             </ul>
         </div>
     </div>
@@ -108,6 +111,20 @@
                 $('#items').html(data);
             })
         }))
+        $('[category]').on('click',(el)=>{
+            if($(el.target).prop('checked')==true){
+                $.get({
+                    url:"/products/"+$(el.target).attr('category')+"/{{$brand_id}}"
+                },(data)=>{
+                    $('#products').html(data)
+                    console.log(data)
+                })
+            }
+            else{
+                console.log("quitando")
+            }
+        })
+
     </script>
 
 @endsection
